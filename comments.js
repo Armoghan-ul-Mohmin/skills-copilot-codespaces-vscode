@@ -1,24 +1,35 @@
-// Create a web server that listens on port 3000 and serves a simple HTML response.
+// Create web server
 
+// Import modules
 const http = require('http');
 
+// Create web server
 const server = http.createServer((req, res) => {
-  const htmlContent = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Comments</title>
-    </head>
-    <body>
-      <h1>Welcome to the Comments Page</h1>
-      <p>This is a simple HTML response.</p>
-    </body>
-    </html>
-  `;
+  if (req.method === 'GET' && req.url === '/comments') {
+    // Hardcoded comments
+    const comments = [
+      {
+        id: 1,
+        author: "John Doe",
+        comment: "This is a sample comment."
+      },
+      {
+        id: 2,
+        author: "Jane Smith",
+        comment: "This is another sample comment."
+      }
+    ];
 
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write(htmlContent);
-  res.end();
+    // Send comments
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(comments));
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Not Found');
+  }
 });
 
-server.listen(3000);
+// Listen on port 3000
+server.listen(3000, () => {
+  console.log('Server is listening on port 3000');
+});

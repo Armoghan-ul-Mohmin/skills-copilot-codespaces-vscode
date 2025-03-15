@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "author": "John Doe",
+    "comment": "This is a sample comment."
+  },
+  {
+    "id": 2,
+    "author": "Jane Smith",
+    "comment": "This is another sample comment."
+  }
+]
